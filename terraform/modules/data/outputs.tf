@@ -17,3 +17,7 @@ output "orders_postgres_secret_arn" {
 output "carts_table_name" {
   value = aws_dynamodb_table.carts.name
 }
+
+output "carts_dynamodb_role_arn" {
+  value = aws_iam_role.carts_dynamodb.arn
+}

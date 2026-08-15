@@ -1,0 +1,34 @@
+catalog:
+  mysql:
+    create: false
+    endpoint: "bedrock-catalog-mysql.cs1a06u4m3aa.us-east-1.rds.amazonaws.com:3306"
+    database: catalog
+    secret:
+      create: false
+      name: catalog-db
+      username: catalog_admin
+
+orders:
+  postgresql:
+    create: false
+    database: orders
+    endpoint:
+      host: "bedrock-orders-postgres.cs1a06u4m3aa.us-east-1.rds.amazonaws.com"
+      port: "5432"
+    secret:
+      create: false
+      name: orders-db
+      username: orders_admin
+  rabbitmq:
+    create: true
+
+carts:
+  dynamodb:
+    create: false
+    tableName: bedrock-carts
+    createTable: false
+  serviceAccount:
+    create: true
+    name: "carts"
+    annotations:
+      eks.amazonaws.com/role-arn: "arn:aws:iam::067514125712:role/bedrock-carts-dynamodb-role"

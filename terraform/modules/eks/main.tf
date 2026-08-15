@@ -21,7 +21,7 @@ module "eks" {
       instance_types = ["t3.small"]
       min_size       = 2
       max_size       = 3
-      desired_size   = 2
+      desired_size   = 3
       capacity_type  = "ON_DEMAND"
       subnet_ids     = var.private_subnet_ids
     }
