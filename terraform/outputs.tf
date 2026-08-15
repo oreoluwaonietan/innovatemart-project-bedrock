@@ -11,3 +11,7 @@ output "dev_console_password" {
   value     = module.iam.console_password
   sensitive = true
 }
+
+output "assets_bucket_name" {
+  value = module.serverless.assets_bucket_name
+}
