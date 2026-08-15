@@ -27,3 +27,11 @@ module "data" {
   private_subnet_ids      = module.vpc.private_subnets
   node_security_group_id  = module.eks.node_security_group_id
 }
+
+module "alb_controller" {
+  source = "./modules/alb-controller"
+
+  cluster_name       = module.eks.cluster_name
+  oidc_provider_arn  = module.eks.oidc_provider_arn
+  oidc_provider_url  = module.eks.cluster_oidc_issuer_url
+}
