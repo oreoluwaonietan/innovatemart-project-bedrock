@@ -22,7 +22,7 @@ resource "aws_iam_user_policy" "s3_put_assets" {
     Statement = [{
       Effect   = "Allow"
       Action   = ["s3:PutObject"]
-      Resource = "arn:aws:s3:::bedrock-assets-alt-soe-tin-025-0361/*"
+      Resource = "${var.assets_bucket_arn}/*"
     }]
   })
 }
