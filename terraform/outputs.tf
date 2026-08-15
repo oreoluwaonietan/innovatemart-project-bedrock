@@ -15,3 +15,23 @@ output "dev_console_password" {
 output "assets_bucket_name" {
   value = module.serverless.assets_bucket_name
 }
+
+output "catalog_mysql_endpoint" {
+  value = module.data.catalog_mysql_endpoint
+}
+
+output "orders_postgres_endpoint" {
+  value = module.data.orders_postgres_endpoint
+}
+
+output "carts_table_name" {
+  value = module.data.carts_table_name
+}
+
+output "carts_dynamodb_role_arn" {
+  value = module.data.carts_dynamodb_role_arn
+}
+
+output "github_actions_role_arn" {
+  value = module.github_oidc.github_actions_role_arn
+}

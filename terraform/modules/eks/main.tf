@@ -32,17 +32,15 @@ module "eks" {
   }
 }
 
-data "aws_caller_identity" "current" {}
-
 resource "aws_eks_access_entry" "admin" {
   cluster_name  = module.eks.cluster_name
-  principal_arn = data.aws_caller_identity.current.arn
+  principal_arn = "arn:aws:iam::067514125712:root"
   type          = "STANDARD"
 }
 
 resource "aws_eks_access_policy_association" "admin" {
   cluster_name  = module.eks.cluster_name
-  principal_arn = data.aws_caller_identity.current.arn
+  principal_arn = "arn:aws:iam::067514125712:root"
   policy_arn    = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
 
   access_scope {
@@ -64,4 +62,20 @@ resource "aws_eks_addon" "cloudwatch_observability" {
   }
 
   depends_on = [aws_iam_role_policy_attachment.cw_agent]
+}
+
+resource "aws_eks_access_entry" "github_actions" {
+  cluster_name  = module.eks.cluster_name
+  principal_arn = var.github_actions_role_arn
+  type          = "STANDARD"
+}
+
+resource "aws_eks_access_policy_association" "github_actions" {
+  cluster_name  = module.eks.cluster_name
+  principal_arn = var.github_actions_role_arn
+  policy_arn    = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
+
+  access_scope {
+    type = "cluster"
+  }
 }
