@@ -32,17 +32,15 @@ module "eks" {
   }
 }
 
-data "aws_caller_identity" "current" {}
-
 resource "aws_eks_access_entry" "admin" {
   cluster_name  = module.eks.cluster_name
-  principal_arn = data.aws_caller_identity.current.arn
+  principal_arn = "arn:aws:iam::067514125712:root"
   type          = "STANDARD"
 }
 
 resource "aws_eks_access_policy_association" "admin" {
   cluster_name  = module.eks.cluster_name
-  principal_arn = data.aws_caller_identity.current.arn
+  principal_arn = "arn:aws:iam::067514125712:root"
   policy_arn    = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
 
   access_scope {
