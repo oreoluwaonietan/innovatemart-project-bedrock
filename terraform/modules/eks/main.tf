@@ -16,6 +16,8 @@ module "eks" {
 
   authentication_mode = "API"
 
+  kms_key_administrators = ["arn:aws:iam::067514125712:root"]
+
   eks_managed_node_groups = {
     bedrock_nodes = {
       instance_types = ["t3.small"]
