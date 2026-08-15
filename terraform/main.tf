@@ -1,3 +1,8 @@
+module "github_oidc" {
+  source      = "./modules/github-oidc"
+  github_repo = "oreoluwaonietan/innovatemart-project-bedrock"
+}
+
 module "vpc" {
   source = "./modules/vpc"
 }
@@ -5,8 +10,9 @@ module "vpc" {
 module "eks" {
   source = "./modules/eks"
 
-  vpc_id             = module.vpc.vpc_id
-  private_subnet_ids = module.vpc.private_subnets
+  vpc_id                   = module.vpc.vpc_id
+  private_subnet_ids       = module.vpc.private_subnets
+  github_actions_role_arn  = module.github_oidc.github_actions_role_arn
 }
 
 module "serverless" {
@@ -33,12 +39,7 @@ module "data" {
 module "alb_controller" {
   source = "./modules/alb-controller"
 
-  cluster_name      = module.eks.cluster_name
+  cluster_name       = module.eks.cluster_name
   oidc_provider_arn  = module.eks.oidc_provider_arn
   oidc_provider_url  = module.eks.cluster_oidc_issuer_url
-}
-
-module "github_oidc" {
-  source      = "./modules/github-oidc"
-  github_repo = "oreoluwaonietan/innovatemart-project-bedrock"
 }
