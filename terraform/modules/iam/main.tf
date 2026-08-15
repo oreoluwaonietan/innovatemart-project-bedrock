@@ -43,3 +43,8 @@ resource "aws_eks_access_policy_association" "bedrock_dev_view" {
     namespaces = ["retail-app"]
   }
 }
+
+resource "aws_iam_user_login_profile" "bedrock_dev_view" {
+  user                    = aws_iam_user.bedrock_dev_view.name
+  password_reset_required = true
+}

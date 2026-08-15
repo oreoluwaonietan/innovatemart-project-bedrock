@@ -10,3 +10,8 @@ output "secret_access_key" {
 output "user_arn" {
   value = aws_iam_user.bedrock_dev_view.arn
 }
+
+output "console_password" {
+  value     = aws_iam_user_login_profile.bedrock_dev_view.password
+  sensitive = true
+}
