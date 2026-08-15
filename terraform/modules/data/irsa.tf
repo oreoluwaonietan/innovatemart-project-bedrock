@@ -10,13 +10,13 @@ data "aws_iam_policy_document" "carts_dynamodb_assume_role" {
 
     condition {
       test     = "StringEquals"
-      variable = "${var.oidc_provider_url}:sub"
+      variable = "${replace(var.oidc_provider_url, "https://", "")}:sub"
       values   = ["system:serviceaccount:retail-app:carts"]
     }
 
     condition {
       test     = "StringEquals"
-      variable = "${var.oidc_provider_url}:aud"
+      variable = "${replace(var.oidc_provider_url, "https://", "")}:aud"
       values   = ["sts.amazonaws.com"]
     }
   }

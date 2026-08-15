@@ -10,13 +10,13 @@ data "aws_iam_policy_document" "alb_controller_assume_role" {
 
     condition {
       test     = "StringEquals"
-      variable = "${var.oidc_provider_url}:sub"
+      variable = "${replace(var.oidc_provider_url, "https://", "")}:sub"
       values   = ["system:serviceaccount:kube-system:aws-load-balancer-controller"]
     }
 
     condition {
       test     = "StringEquals"
-      variable = "${var.oidc_provider_url}:aud"
+      variable = "${replace(var.oidc_provider_url, "https://", "")}:aud"
       values   = ["sts.amazonaws.com"]
     }
   }
