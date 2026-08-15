@@ -14,3 +14,7 @@ module "iam" {
 
   cluster_name = module.eks.cluster_name
 }
+
+module "serverless" {
+  source = "./modules/serverless"
+}
