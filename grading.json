@@ -1,7 +1,7 @@
 {
-  "cluster_endpoint": "https://40135A9E1E035EA0D955B0BBB3C1BD76.gr7.us-east-1.eks.amazonaws.com",
+  "cluster_endpoint": "https://5A2CCA8E815818D1935EBCAB22995189.gr7.us-east-1.eks.amazonaws.com",
   "cluster_name": "project-bedrock-cluster",
   "region": "us-east-1",
-  "vpc_id": "vpc-041624b60bea553ce",
+  "vpc_id": "vpc-039748d8ab91aa489",
   "assets_bucket_name": "bedrock-assets-alt-soe-tin-025-0361"
 }
