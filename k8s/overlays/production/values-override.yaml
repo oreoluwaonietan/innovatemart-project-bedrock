@@ -1,4 +1,6 @@
 catalog:
+  image:
+    tag: "1.6.2"
   mysql:
     create: false
     endpoint: "bedrock-catalog-mysql.cs1a06u4m3aa.us-east-1.rds.amazonaws.com:3306"
@@ -9,6 +11,8 @@ catalog:
       username: catalog_admin
 
 orders:
+  image:
+    tag: "1.6.2"
   postgresql:
     create: false
     database: orders
@@ -23,6 +27,8 @@ orders:
     create: true
 
 carts:
+  image:
+    tag: "1.6.2"
   dynamodb:
     create: false
     tableName: bedrock-carts
@@ -33,7 +39,16 @@ carts:
     annotations:
       eks.amazonaws.com/role-arn: "arn:aws:iam::067514125712:role/bedrock-carts-dynamodb-role"
 
+checkout:
+  image:
+    tag: "1.6.2"
+
 ui:
+  image:
+    tag: "1.6.2"
+  env:
+    - name: RETAIL_UI_THEME
+      value: "default"
   endpoints:
     catalog: http://retail-store-catalog:80
     carts: http://retail-store-carts:80
